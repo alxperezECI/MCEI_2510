@@ -1,5 +1,7 @@
 #include<bits/stdc++.h>
-#define EPSILON 0.001
+#include <iomanip>
+
+#define EPSILON 0.00000001
 
 using namespace std;
 
@@ -8,6 +10,12 @@ using namespace std;
 double func(double x)
 {
     return sin(10*x) + cos(3*x);
+}
+
+
+// Otra función
+double func1(double x){
+  return x*x*x*x*x*x*x*x*x*x -1 ;
 }
 
 // Imprime las raices de la func(x) con un error de EPSILON
@@ -36,8 +44,9 @@ void biseccion(double (*f)(double), double a, double b)
         else
             a = c;
         count++;
+        cout << "El valor de c es: " << setprecision(10) << c << endl;
     }
-    cout << "El valor de la raíz es: " << c << endl;
+    cout << "El valor de la raíz es: " << setprecision(16) << c << endl;
     cout << "Con " << count << " iteraciones." << endl;
 }
 
@@ -47,5 +56,6 @@ int main()
     // Valores iniciales asumidos
     double a =4., b = 5.;
     biseccion(func, a, b);
+    biseccion(func1, 0., 1.3 );
     return 0;
 }

@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
-#define MAX_ITER 1000000
+#include <iomanip>
+#define MAX_ITER 100
 
 using namespace std;
 
@@ -9,6 +10,12 @@ double func(double x)
 {
     return sin(10*x) + cos(3*x);
 }
+
+// Agregando otra función
+double func1(double x){
+  return x*x*x*x*x*x*x*x*x*x - 1;
+}
+
 
 // Imprime la raíz de la funición func(x) en el intervalo [a, b]
 void regulaFalsi(double (*f)(double), double a, double b)
@@ -38,8 +45,9 @@ void regulaFalsi(double (*f)(double), double a, double b)
             a = c;
         
         count++;
+    cout << "El valor de c es: " << setprecision(16) << c << endl;
     }
-    cout << "El valor de la raíz es: " << c << endl;
+    cout << "El valor de la raíz es: " << setprecision(10) << c << endl;
     cout << "con " << count << " iteracions." << endl;
 }
 
@@ -48,6 +56,7 @@ int main()
 {
     // Valores iniciales asumidos
     double a =4., b = 5.;
-    regulaFalsi(func,a, b);
+    regulaFalsi( func,a, b );
+    regulaFalsi( func1, 0.,  1.3);
     return 0;
 }
