@@ -61,4 +61,6 @@ int main()
   MatrixXd X = M.lu().solve(B);
   cout << "Esta es la solución para v de la ecuación MX=B:" << endl << X << endl;
   cout << "Y el error relativo: " << (M*X-B).norm() / B.norm() << endl;
+
+  cout << "Y la inversa de la matriz es: " << endl << M.inverse() << endl;
 }
