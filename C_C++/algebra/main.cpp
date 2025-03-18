@@ -1,6 +1,7 @@
 #include <iostream>
 #include <Eigen/Dense>
 #include <Eigen/Eigenvalues>
+#include <Eigen/LU>
  
 using Eigen::MatrixXd;
 using namespace Eigen;
@@ -23,7 +24,7 @@ int main()
   cout << "La matriz de vectores propios, V, es:" << endl << es.eigenvectors() << endl << endl;
 
   // Las normas de las matrices y vectores
-  Eigen::VectorXf v(4);
+  Eigen::VectorXd v(4);
 
   v << 1, -1,  4, -2;
 
@@ -47,4 +48,17 @@ int main()
   std::cout << "A.lpNorm<1>() = " << A.lpNorm<1>() << std::endl;
   std::cout << "A.lpNorm<Infinito>() = " << A.lpNorm< Eigen::Infinity >() << std::endl;
 
+
+  // Ahora vamos a ver la descomponsición LU y su uso en resolución de sistemas e inversas
+  MatrixXd M(3,3);
+  M <<  3, -0.1, -0.2,
+       0.1, 7, -.3,
+       0.3, -.2, 10;
+
+  Eigen::VectorXd B(3);
+  B << 7.85, -19.3, 71.4;
+  
+  MatrixXd X = M.lu().solve(B);
+  cout << "Esta es la solución para v de la ecuación MX=B:" << endl << X << endl;
+  cout << "Y el error relativo: " << (M*X-B).norm() / B.norm() << endl;
 }
